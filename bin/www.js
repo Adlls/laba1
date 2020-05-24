@@ -103,7 +103,8 @@ mongoose.connect(`mongodb://${process.env.HOST}:${process.env.DB_PORT}/${process
       user: process.env.DB_LOGIN,
       pass: process.env.DB_PASSWORD,
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useFindAndModify: false
     });
 
 

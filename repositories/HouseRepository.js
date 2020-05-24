@@ -1,13 +1,8 @@
 const entityHouse = require('../entities/House');
-module.exports = class HouseRepository {
+const baseRepository = require('./BaseRepository');
+module.exports = class HouseRepository extends baseRepository {
 
-    constructor(mongoose) {
-        this._user = mongoose.model('house', entityHouse);
-    }
-
-   async findHouseByNum(numHouse) {
-    return await this._user.find({'house_num': numHouse}).then((value) => {
-            return value;
-     });
+    constructor() {
+        super(entityHouse);
     }
 };
