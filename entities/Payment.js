@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
-const nameDoc = 'house';
+const nameDoc = 'payment';
 
 module.exports = mongoose.model(nameDoc, new schema({
-        contract_id: schema.Types.ObjectID,
-        house_num: Number
+        value: Number,
+        current_data: Date,
+        id_charge: schema.Types.ObjectID
     },
     {   collection : nameDoc,
         versionKey: false
     }));
+

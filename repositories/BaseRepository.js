@@ -1,30 +1,33 @@
 const mongoose = require('mongoose');
 module.exports = class BaseRepository {
 
-    _schema;
     constructor(schema) {
         this._schema = schema;
         this.getModel();
     }
 
-    getModel() {
-        return mongoose.model('', this._schema);
+    static getObjectIdType(id) {
+        return mongoose.Types.ObjectId(id);
     }
 
-    async findById(id) {
-        return await this.getModel().findById(id).then(value => value);
+    getModel() {
+        return this._schema;
+    }
+
+     findById(id) {
+        return this.getModel().findById(id).exec();
     }
 
     async findAll() {
-        return await this.getModel().find().then(value => value);
+        return this.getModel().find().exec();
     }
 
-    async create(body) {
-        return await this.getModel().create(body).then(value => value);
+     create(body) {
+        return this.getModel().create(body).exec();
     }
 
-    async update(id, body) {
-        return await this.getModel().findOneAndUpdate(id , body).then(value => value);
+     update(id, body) {
+        return this.getModel().findOneAndUpdate(id , body).exec();
     }
 
-}
+};

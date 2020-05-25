@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const houseService = require('../sevices/HouseService');
+const houseService = require('../services/HouseService');
 const instanceHS = new houseService();
 
    router.get('/', async (req, res) => {
-       console.log(instanceHS.getRqByParams("h", "s"));
        res.send(await instanceHS.getHouses().then(value => value));
    });
 
@@ -13,17 +12,18 @@ const instanceHS = new houseService();
    });
 
    router.post('/', async (req, res) => {
-     res.send(await instanceHS.createHouse({
-      "contract_id": req.body.contract_id,
-      "house_num": req.body.house_num
-     }));
+     res.send(await instanceHS.createHouse(
+         houseService.setRqBody(
+             req.body.contract_id,
+             req.body.house_num)));
    });
 
   router.put('/:id', async (req, res) => {
-   res.send(await instanceHS.updateHouse(req.params.id,{
-    "contract_id": req.body.contract_id,
-    "house_num": req.body.house_num
-   }));
+   res.send(await instanceHS.updateHouse(
+       req.params.id,
+       houseService.setRqBody(
+       req.body.contract_id,
+       req.body.house_num)));
   });
 
 
