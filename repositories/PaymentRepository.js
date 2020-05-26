@@ -6,4 +6,8 @@ module.exports = class HouseRepository extends baseRepository {
         super(entityPayment);
     }
 
+    async findAllByIdCharge(chargeId) {
+        return await this.getModel().find({chargeId: chargeId}).exec();
+    }
+
 };

@@ -7,7 +7,8 @@ module.exports = mongoose.model(nameDoc, new schema({
         is_pay: Boolean,
         value: Number,
         saldo: Number,
-        current_data: Date
+        month: Number,
+        year: Number
     },
     {   collection : nameDoc,
         versionKey: false
